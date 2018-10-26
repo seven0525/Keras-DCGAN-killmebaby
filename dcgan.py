@@ -21,7 +21,9 @@ config = tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True))
 session = tf.Session(config=config)
 tensorflow_backend.set_session(session)
 
-root_dir = "/home/takusub/PycharmProjects/Samples/dcgan/kill_me_baby_datasets/"
+# root_dir = "/Users/watanabetaichi/Projects/Keras-DCGAN-killmebaby/akill_me_baby_datasets/"
+
+root_dir = "/Users/watanabetaichi/Projects/Keras-DCGAN-killmebaby/kill_me_baby_datasets"
 
 
 class DCGAN():
@@ -113,7 +115,8 @@ class DCGAN():
 
         return model
 
-    def train(self, iterations, batch_size=128, save_interval=50, model_interval=1000, check_noise=None, r=5, c=5):
+# defaultではsave_interval = 50
+    def train(self, iterations, batch_size=128, save_interval=5, model_interval=1000, check_noise=None, r=5, c=5):
 
         X_train, labels = self.load_imgs()
 
@@ -156,7 +159,8 @@ class DCGAN():
                 resultImage = self.visualizeInterpolation(start=start, end=end)
                 cv2.imwrite("images/latent/" + "latent_{}.png".format(iteration), resultImage)
                 if iteration % model_interval == 0:
-                    self.generator.save("ganmodels/dcgan-{}-iter.h5".format(iteration))
+                    # self.generator.save("ganmodels/dcgan-{}-iter.h5".format(iteration))
+                    self.generator.save("/Users/watanabetaichi/Projects/Keras-DCGAN-killmebaby/dcgan-{}-iter.h5".format(iteration))
 
     def save_imgs(self, iteration, check_noise, r, c):
         noise = check_noise
@@ -241,5 +245,7 @@ if __name__ == '__main__':
     dcgan = DCGAN()
     r, c = 5, 5
     check_noise = np.random.uniform(-1, 1, (r * c, 100))
-    dcgan.train(iterations=200000, batch_size=32, save_interval=1000, model_interval=5000, check_noise=check_noise, r=r,
+    dcgan.train(iterations=20, batch_size=32, save_interval=1, model_interval=1, check_noise=check_noise, r=r,
                 c=c)
+    # dcgan.train(iterations=200000, batch_size=32, save_interval=1000, model_interval=5000, check_noise=check_noise, r=r,
+    #             c=c)
