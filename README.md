@@ -7,8 +7,8 @@ And it needs you to install pandas, numpy, tensorflow, keras, opencv3, matplotli
 And we implemented this codes in tensorflow1.6.0. 
 
 ```
-unrar kill_me_baby_datasets.rar
 python3 dcgan.py
 ```
 
 And then you can get 25 generated images figure in images/gen_imgs and Visualized interpolation latent image in images/latent
+ディレクトリ場所とかは任意で変更してください。
